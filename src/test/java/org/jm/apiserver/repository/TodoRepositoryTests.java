@@ -2,6 +2,7 @@ package org.jm.apiserver.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jm.apiserver.domain.Todo;
+import org.jm.apiserver.dto.PageRequestDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,8 +86,5 @@ public class TodoRepositoryTests {
         log.info(String.valueOf(result.getContent()));
     }
 
-    @Test
-    public void testSearch1() {
-        todoRepository.search1();
-    }
+
 }
