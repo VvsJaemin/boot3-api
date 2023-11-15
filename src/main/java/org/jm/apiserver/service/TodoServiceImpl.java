@@ -8,6 +8,7 @@ import org.jm.apiserver.dto.PageResponseDTO;
 import org.jm.apiserver.dto.TodoDTO;
 import org.jm.apiserver.repository.TodoRepository;
 import org.jm.apiserver.repository.search.TodoSearch;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ import java.util.stream.Collectors;
 public class TodoServiceImpl implements TodoService {
 
     private final TodoRepository todoRepository;
+
+    private final ModelMapper modelMapper;
 
 
     @Override
@@ -36,6 +39,8 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public Long register(TodoDTO dto) {
 
+        //modelMapper.map(dto, Todo.class); //dto -> entity 아래 dtoToEntity랑 동일
+
         Todo todo = dtoToEntity(dto);
 
         Todo result = todoRepository.save(todo);
@@ -45,7 +50,6 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public void modify(TodoDTO dto) {
-
         Optional<Todo> result = todoRepository.findById(dto.getTno());
 
         Todo todo = result.orElseThrow();
