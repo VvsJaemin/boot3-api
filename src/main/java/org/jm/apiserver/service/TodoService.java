@@ -1,6 +1,8 @@
 package org.jm.apiserver.service;
 
 import org.jm.apiserver.domain.Todo;
+import org.jm.apiserver.dto.PageRequestDTO;
+import org.jm.apiserver.dto.PageResponseDTO;
 import org.jm.apiserver.dto.TodoDTO;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,6 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 public interface TodoService {
 
     TodoDTO get(Long tno);
+
+    Long register(TodoDTO dto);
+
+    void modify(TodoDTO dto);
+
+    void remove(Long tno);
+
+    PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO);
 
     default TodoDTO entityToDTO(Todo todo) {
 
