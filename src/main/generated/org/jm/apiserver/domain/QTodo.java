@@ -29,6 +29,8 @@ public class QTodo extends EntityPathBase<Todo> {
 
     public final NumberPath<Long> tno = createNumber("tno", Long.class);
 
+    public final StringPath writer = createString("writer");
+
     public QTodo(String variable) {
         super(Todo.class, forVariable(variable));
     }
