@@ -38,6 +38,12 @@ public class ProductController {
 
         Long pno = productService.register(productDto);
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         return Map.of("RESULT", pno);
     }
 
@@ -104,5 +110,7 @@ public class ProductController {
         productService.remove(pno);
 
         fileUtil.deleteFiles(oldFileNames);
+
+        return Map.of("RESULT", "SUCCESS");
     }
 }
