@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         Member member = memberRepository.getWithRoles(username);
 
-        if (Objects.isNull(member)) {
+        if (member == null) {
             throw new UsernameNotFoundException("Not Found");
 
         }
@@ -40,6 +40,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                         .stream()
                         .map(memberRole -> memberRole.name()).collect(Collectors.toList())
         );
+
+        log.info(memberDTO);
 
 
         return memberDTO;

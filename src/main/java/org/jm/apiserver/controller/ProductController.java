@@ -9,6 +9,7 @@ import org.jm.apiserver.service.ProductService;
 import org.jm.apiserver.util.CustomFileUtil;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 @RestController
 @RequiredArgsConstructor
 @Log4j2
@@ -52,6 +54,7 @@ public class ProductController {
         return fileUtil.getFile(fileName);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/list")
     public PageResponseDTO<ProductDto> list(PageRequestDTO pageRequestDTO) {
         return productService.getList(pageRequestDTO);
