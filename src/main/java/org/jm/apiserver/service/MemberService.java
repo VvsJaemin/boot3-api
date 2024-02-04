@@ -2,6 +2,7 @@ package org.jm.apiserver.service;
 
 import org.jm.apiserver.domain.Member;
 import org.jm.apiserver.dto.MemberDTO;
+import org.jm.apiserver.dto.MemberModifyDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.Collectors;
@@ -10,6 +11,8 @@ import java.util.stream.Collectors;
 public interface MemberService {
 
     MemberDTO getKakaoMember(String accessToken);
+
+    void modifyMember(MemberModifyDTO memberModifyDTO);
 
 
     default MemberDTO entityToDto(Member member) {

@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.jm.apiserver.domain.Member;
 import org.jm.apiserver.domain.MemberRole;
 import org.jm.apiserver.dto.MemberDTO;
+import org.jm.apiserver.dto.MemberModifyDTO;
 import org.jm.apiserver.repository.MemberRepository;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -51,6 +52,19 @@ public class MemberServiceImpl implements MemberService{
         MemberDTO memberDTO = entityToDto(socialMember);
 
         return memberDTO;
+    }
+
+    @Override
+    public void modifyMember(MemberModifyDTO memberModifyDTO) {
+        Optional<Member> result = memberRepository.findById(memberModifyDTO.getEmail());
+
+        Member member = result.orElseThrow();
+
+        member.changeNickname(memberModifyDTO.getNickname());
+        member.changeSocial(true);
+        member.changePw(passwordEncoder.encode(memberModifyDTO.getPw()));
+
+        memberRepository.save(member);
     }
 
     private Member makeSocialMember(String email) { // nickname
