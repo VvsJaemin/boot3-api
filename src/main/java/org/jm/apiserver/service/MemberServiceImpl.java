@@ -45,6 +45,8 @@ public class MemberServiceImpl implements MemberService{
             return memberDTO;
         }
 
+        System.out.println("MemberServiceImpl.getKakaoMember");
+
         Member socialMember = makeSocialMember(nickname);
 
         memberRepository.save(socialMember);
@@ -58,6 +60,7 @@ public class MemberServiceImpl implements MemberService{
     public void modifyMember(MemberModifyDTO memberModifyDTO) {
         Optional<Member> result = memberRepository.findById(memberModifyDTO.getEmail());
 
+        System.out.println("MemberServiceImpl.modifyMember");
         Member member = result.orElseThrow();
 
         member.changeNickname(memberModifyDTO.getNickname());
