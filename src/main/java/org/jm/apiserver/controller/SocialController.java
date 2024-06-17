@@ -31,6 +31,8 @@ public class SocialController {
 
         Map<String, Object> claims = memberDTO.getClaims();
 
+        System.out.println("SocialController.getMemberFromKakao");
+
         String jwtAccessToken = JWTUtil.generateToken(claims, 10);
         String jwtRefreshToken = JWTUtil.generateToken(claims, 10);
 

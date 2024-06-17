@@ -51,6 +51,8 @@ public class MemberServiceImpl implements MemberService{
 
         memberRepository.save(socialMember);
 
+        System.out.println("MemberServiceImpl.getKakaoMember");
+
         MemberDTO memberDTO = entityToDto(socialMember);
 
         return memberDTO;
